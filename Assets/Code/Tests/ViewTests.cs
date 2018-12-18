@@ -10,6 +10,6 @@ public class ViewTests {
     [Test]
     public void TestDisplayBoardDisplaysAnEmptyBoardCorrectly() {
         // Given
-        const Model model = new Model(new Move[1]);
+        // const Model model = new Model(new Move[1]);
     }
 }
