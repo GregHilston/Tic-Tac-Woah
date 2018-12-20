@@ -3,7 +3,6 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 using TicTacWoah;
-using 
 
 public class ModelTests {
     // Model sut;
@@ -13,13 +12,19 @@ public class ModelTests {
         // sut = Model();
     }
 
-    [UnityTest]
+    [Test]
     public void TestRecordPlayerMoveUpdatesInternalState() {
         // Given
-        var sut = Model();
+        TicTacWoah.Model.Move[] moves = {
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty};
+        var sut = new Model(moves);
 
         // When
+        sut.RecordPlayerMove(0);
 
         // Then
+
     }
 }
