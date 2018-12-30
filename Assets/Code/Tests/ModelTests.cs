@@ -64,4 +64,58 @@ public class ModelTests {
         Assert.IsFalse(returnValue, "A player should not be able to make a " +
             "move where a computer has already moved");
     }
+
+    [Test]
+    public void TestRecordComputerMoveWhenLegalReturnsTrue()
+    {
+        // Given
+        TicTacWoah.Model.Move[] moves = {
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty};
+        var sut = new Model(moves);
+
+        // When
+        bool returnValue = sut.RecordPlayerMove(0);
+
+        // Then
+        Assert.IsTrue(returnValue, "A computer should be able to make a move on " +
+            "an empty space");
+    }
+
+    [Test]
+    public void TestRecordComputerMoveWhereTheyAlreadyMovedReturnsFalse()
+    {
+        // Given
+        TicTacWoah.Model.Move[] moves = {
+            Model.Move.Computer, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty};
+        var sut = new Model(moves);
+
+        // When
+        bool returnValue = sut.RecordPlayerMove(0);
+
+        // Then
+        Assert.IsFalse(returnValue, "A computer should not be able to make a " +
+            "move where they have already moved");
+    }
+
+    [Test]
+    public void TestRecordComputerMoveWherePlayerAlreadyMovedReturnsFalse()
+    {
+        // Given
+        TicTacWoah.Model.Move[] moves = {
+            Model.Move.Computer, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty};
+        var sut = new Model(moves);
+
+        // When
+        bool returnValue = sut.RecordPlayerMove(0);
+
+        // Then
+        Assert.IsFalse(returnValue, "A computer should not be able to make a " +
+            "move where a player has already moved");
+    }
 }
