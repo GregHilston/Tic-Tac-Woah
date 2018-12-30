@@ -17,37 +17,39 @@ namespace TicTacWoah {
         /// Records a move made by the player
         /// </summary>
         /// <param name="coordinate">Where the player has moved</param>
-        void RecordPlayerMove(int coordinate);
+        /// <returns>True if the move was valid else False</returns>
+        bool RecordPlayerMove(int coordinate);
 
         /// <summary>
         /// Records a mvoe made by the computer
         /// </summary>
         /// <param name="coordinate">Where the computer has moved</param>
-        void RecordComputerMove(int coordinate);
+        /// <returns>True if the move was valid else False</returns>
+        bool RecordComputerMove(int coordinate);
 
         /// <summary>
         /// Determines if it is the players turn
         /// </summary>
         /// <returns>True if it is the player's turn else False</returns>
-        Boolean IsPlayersTurn();
+        bool IsPlayersTurn();
 
         /// <summary>
         /// Determines if the game is over
         /// </summary>
         /// <returns>True if the game is over else False</returns>
-        Boolean IsGameOver();
+        bool IsGameOver();
 
         /// <summary>
         /// Determines if the player has won
         /// </summary>
         /// <returns>True if the player has won else False</returns>
-        Boolean HasPlayerWon();
+        bool HasPlayerWon();
 
         /// <summary>
         /// Determines if the computer has won
         /// </summary>
         /// <returns>True if the computer has won else False</returns>
-        Boolean HasComputerWon();
+        bool HasComputerWon();
     }
 
     public class Model : IModel {
@@ -63,11 +65,11 @@ namespace TicTacWoah {
             }
         }
 
-        public void RecordPlayerMove(int coordinate) {
+        public bool RecordPlayerMove(int coordinate) {
             throw new NotImplementedException();
         }
 
-        public void RecordComputerMove(int coordinate) {
+        public bool RecordComputerMove(int coordinate) {
             throw new NotImplementedException();
         }
 

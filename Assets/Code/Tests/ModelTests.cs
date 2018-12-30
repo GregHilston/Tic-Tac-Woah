@@ -13,7 +13,7 @@ public class ModelTests {
     }
 
     [Test]
-    public void TestRecordPlayerMoveUpdatesInternalState() {
+    public void TestRecordPlayerMoveIsLegalReturnsTrue() {
         // Given
         TicTacWoah.Model.Move[] moves = {
             Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
@@ -22,9 +22,9 @@ public class ModelTests {
         var sut = new Model(moves);
 
         // When
-        sut.RecordPlayerMove(0);
+        bool returnValue = sut.RecordPlayerMove(0);
 
         // Then
-
+        Assert.IsTrue(returnValue);
     }
 }
