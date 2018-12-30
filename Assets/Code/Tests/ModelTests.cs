@@ -12,6 +12,7 @@ public class ModelTests {
         // sut = Model();
     }
 
+    // Tests For RecordPlayerMove
     [Test]
     public void TestRecordPlayerMoveWhenLegalReturnsTrue() {
         // Given
@@ -65,6 +66,7 @@ public class ModelTests {
             "move where a computer has already moved");
     }
 
+    // Tests for RecordComputerMove
     [Test]
     public void TestRecordComputerMoveWhenLegalReturnsTrue()
     {
@@ -106,7 +108,7 @@ public class ModelTests {
     {
         // Given
         TicTacWoah.Model.Move[] moves = {
-            Model.Move.Computer, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Player, Model.Move.Empty, Model.Move.Empty,
             Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
             Model.Move.Empty, Model.Move.Empty, Model.Move.Empty};
         var sut = new Model(moves);
