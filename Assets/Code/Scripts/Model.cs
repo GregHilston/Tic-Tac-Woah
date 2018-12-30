@@ -59,7 +59,7 @@ namespace TicTacWoah {
 
         Move[] board = new Move[9]; // our game board
 
-        public Model(Move[] boardState) {
+        public Model(Move[] boardState, bool playerGoesFirst = true) {
             const int expectedBoardLength = 9;
 
             if (boardState.Length != expectedBoardLength) {

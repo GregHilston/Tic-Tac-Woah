@@ -4,8 +4,42 @@ using NUnit.Framework;
 using System.Collections;
 using TicTacWoah;
 
-public class ModelTests { 
+public class ModelTests {
     // Tests RecordPlayerMove and IsPlayersTurn
+    [Test]
+    public void TestPlayerGoesFirstByDefault()
+    {
+        // Given
+        TicTacWoah.Model.Move[] moves = {
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty};
+        var sut = new Model(moves);
+
+        // When
+
+        // Then
+        Assert.IsTrue(sut.IsPlayersTurn(), "It should be the player's " +
+            "turn first after a default game is started");
+    }
+
+    [Test]
+    public void TestComputerGoesFirstWhenInitializedSo()
+    {
+        // Given
+        TicTacWoah.Model.Move[] moves = {
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty};
+        var sut = new Model(moves, false);
+
+        // When
+
+        // Then
+        Assert.IsFalse(sut.IsPlayersTurn(), "It should be the computer's " +
+            "turn first after a default game is started");
+    }
+
     [Test]
     public void TestRecordPlayerMoveWhenLegalReturnsTrue() {
         // Given
