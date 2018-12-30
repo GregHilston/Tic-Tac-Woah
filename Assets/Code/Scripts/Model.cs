@@ -12,7 +12,7 @@ namespace TicTacWoah {
     /// 3 4 5
     /// 6 7 8
     /// </summary>
-    interface IModel {
+    public interface IModel {
         /// <summary>
         /// Records a move made by the player. Updates internal state of whose 
         /// turn it is
