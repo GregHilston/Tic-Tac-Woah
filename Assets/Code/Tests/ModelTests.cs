@@ -5,7 +5,7 @@ using System.Collections;
 using TicTacWoah;
 
 public class ModelTests { 
-    // Tests RecordPlayerMove
+    // Tests RecordPlayerMove and IsPlayersTurn
     [Test]
     public void TestRecordPlayerMoveWhenLegalReturnsTrue() {
         // Given
@@ -65,7 +65,7 @@ public class ModelTests {
             "turn just after they made a move");
     }
 
-    // Tests RecordComputerMove
+    // Tests RecordComputerMove and IsPlayersTurn
     [Test]
     public void TestRecordComputerMoveWhenLegalReturnsTrue()
     {
@@ -124,5 +124,68 @@ public class ModelTests {
             "move where a player has already moved");
         Assert.IsTrue(sut.IsPlayersTurn(), "It should be the player's " +
            "turn just after the computer made a move");
+    }
+
+    // Tests IsGameOver, HasPlayerWon and HasComputerWon
+    [Test]
+    public void TestsIsGameOverReturnsFalseAtStartOfEmptyGame()
+    {
+        // Given
+        TicTacWoah.Model.Move[] moves = {
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty};
+        var sut = new Model(moves);
+
+        // When
+        // purposefully doing nothing, using the intiial state of the board
+
+        // Then
+        Assert.IsFalse(sut.IsGameOver(), "The game should not be over when " +
+        	"initialzied with empty spaces");
+    }
+
+    [Test]
+    public void TestsIsGameOverReturnsTrueAtStartOfFinishedGameWithPlayerWinning()
+    {
+        // Given
+        TicTacWoah.Model.Move[] moves = {
+            Model.Move.Player, Model.Move.Empty, Model.Move.Computer,
+            Model.Move.Player, Model.Move.Computer, Model.Move.Empty,
+            Model.Move.Player, Model.Move.Empty, Model.Move.Empty};
+        var sut = new Model(moves);
+
+        // When
+        // purposefully doing nothing, using the intiial state of the board
+
+        // Then
+        Assert.IsTrue(sut.IsGameOver(), "The game should be over when " +
+            "initialzied with a three in a row player spaces");
+        Assert.IsTrue(sut.HasPlayerWon(), "The player should be considered " +
+            "the winner");
+        Assert.IsFalse(sut.HasComputerWon(), "The computer should be considered " +
+            "the loser");
+    }
+
+    [Test]
+    public void TestsIsGameOverReturnsTrueAtStartOfFinishedGameWithComputerWinning()
+    {
+        // Given
+        TicTacWoah.Model.Move[] moves = {
+            Model.Move.Computer, Model.Move.Empty, Model.Move.Player,
+            Model.Move.Computer, Model.Move.Player, Model.Move.Empty,
+            Model.Move.Computer, Model.Move.Empty, Model.Move.Empty};
+        var sut = new Model(moves);
+
+        // When
+        // purposefully doing nothing, using the intiial state of the board
+
+        // Then
+        Assert.IsTrue(sut.IsGameOver(), "The game should be over when " +
+            "initialzied with a three in a row computer spaces");
+        Assert.IsTrue(sut.HasComputerWon(), "The computer should be considered " +
+            "the winner");
+        Assert.IsFalse(sut.HasPlayerWon(), "The player should be considered " +
+            "the loser");
     }
 }
