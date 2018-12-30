@@ -14,14 +14,16 @@ namespace TicTacWoah {
     /// </summary>
     interface IModel {
         /// <summary>
-        /// Records a move made by the player
+        /// Records a move made by the player. Updates internal state of whose 
+        /// turn it is
         /// </summary>
         /// <param name="coordinate">Where the player has moved</param>
         /// <returns>True if the move was valid else False</returns>
         bool RecordPlayerMove(int coordinate);
 
         /// <summary>
-        /// Records a mvoe made by the computer
+        /// Records a move made by the computer. Updates internal state of whose 
+        /// turn it is
         /// </summary>
         /// <param name="coordinate">Where the computer has moved</param>
         /// <returns>True if the move was valid else False</returns>
