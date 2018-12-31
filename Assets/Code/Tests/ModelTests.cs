@@ -7,8 +7,7 @@ using TicTacWoah;
 public class ModelTests {
     // Tests RecordPlayerMove and IsPlayersTurn
     [Test]
-    public void TestPlayerGoesFirstByDefault()
-    {
+    public void TestPlayerGoesFirstByDefault() {
         // Given
         TicTacWoah.Model.Move[] moves = {
             Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
@@ -24,8 +23,7 @@ public class ModelTests {
     }
 
     [Test]
-    public void TestComputerGoesFirstWhenInitializedSo()
-    {
+    public void TestComputerGoesFirstWhenInitializedSo() {
         // Given
         TicTacWoah.Model.Move[] moves = {
             Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
@@ -60,8 +58,7 @@ public class ModelTests {
     }
 
     [Test]
-    public void TestRecordPlayerMoveWhereTheyAlreadyMovedReturnsFalse()
-    {
+    public void TestRecordPlayerMoveWhereTheyAlreadyMovedReturnsFalse() {
         // Given
         TicTacWoah.Model.Move[] moves = {
             Model.Move.Player, Model.Move.Empty, Model.Move.Empty,
@@ -101,8 +98,7 @@ public class ModelTests {
 
     // Tests RecordComputerMove and IsPlayersTurn
     [Test]
-    public void TestRecordComputerMoveWhenLegalReturnsTrue()
-    {
+    public void TestRecordComputerMoveWhenLegalReturnsTrue() {
         // Given
         TicTacWoah.Model.Move[] moves = {
             Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
@@ -121,8 +117,7 @@ public class ModelTests {
     }
 
     [Test]
-    public void TestRecordComputerMoveWhereTheyAlreadyMovedReturnsFalse()
-    {
+    public void TestRecordComputerMoveWhereTheyAlreadyMovedReturnsFalse() {
         // Given
         TicTacWoah.Model.Move[] moves = {
             Model.Move.Computer, Model.Move.Empty, Model.Move.Empty,
@@ -141,8 +136,7 @@ public class ModelTests {
     }
 
     [Test]
-    public void TestRecordComputerMoveWherePlayerAlreadyMovedReturnsFalse()
-    {
+    public void TestRecordComputerMoveWherePlayerAlreadyMovedReturnsFalse() {
         // Given
         TicTacWoah.Model.Move[] moves = {
             Model.Move.Player, Model.Move.Empty, Model.Move.Empty,
@@ -162,8 +156,7 @@ public class ModelTests {
 
     // Tests IsGameOver, HasPlayerWon and HasComputerWon
     [Test]
-    public void TestsIsGameOverReturnsFalseAtStartOfEmptyGame()
-    {
+    public void TestsIsGameOverReturnsFalseAtStartOfEmptyGame() {
         // Given
         TicTacWoah.Model.Move[] moves = {
             Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
@@ -180,8 +173,7 @@ public class ModelTests {
     }
 
     [Test]
-    public void TestsIsGameOverReturnsTrueAtStartOfFinishedGameWithPlayerWinning()
-    {
+    public void TestsIsGameOverReturnsTrueAtStartOfFinishedGameWithPlayerWinning() {
         // Given
         TicTacWoah.Model.Move[] moves = {
             Model.Move.Player, Model.Move.Empty, Model.Move.Computer,
@@ -202,8 +194,7 @@ public class ModelTests {
     }
 
     [Test]
-    public void TestsIsGameOverReturnsTrueAtStartOfFinishedGameWithComputerWinning()
-    {
+    public void TestsIsGameOverReturnsTrueAtStartOfFinishedGameWithComputerWinning() {
         // Given
         TicTacWoah.Model.Move[] moves = {
             Model.Move.Computer, Model.Move.Empty, Model.Move.Player,

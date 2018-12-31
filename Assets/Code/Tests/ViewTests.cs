@@ -9,20 +9,16 @@ using TicTacWoah;
 /// <summary>
 /// Tests the View class
 /// </summary>
-public class ViewTests
-{
-    public class PresenterSpy : IPresenter
-    {
+public class ViewTests {
+    public class PresenterSpy : IPresenter {
         public bool OnGameStartWasCalled = false;
-        public void OnGameStart()
-        {
+        public void OnGameStart() {
             OnGameStartWasCalled = true;
         }
 
         public bool RecordComputerMoveWasCalled = false;
         public int RecordComputerMoveCoordinate;
-        public void RecordComputerMove(int coordinate)
-        {
+        public void RecordComputerMove(int coordinate) {
             RecordComputerMoveWasCalled = true;
 
             RecordComputerMoveCoordinate = coordinate;
@@ -30,8 +26,7 @@ public class ViewTests
 
         public bool RecordPlayerMoveWasCalled = false;
         public int RecordPlayerMoveCoordinate;
-        public void RecordPlayerMove(int coordinate)
-        {
+        public void RecordPlayerMove(int coordinate) {
             RecordPlayerMoveWasCalled = true;
 
             RecordPlayerMoveCoordinate = coordinate;
@@ -40,8 +35,7 @@ public class ViewTests
 
     // tests DisplayBoard
     [Test]
-    public void TestDisplayBoardDisplaysAnEmptyBoard()
-    {
+    public void TestDisplayBoardDisplaysAnEmptyBoard() {
         // Given
         var presenterSpy = new PresenterSpy();
 
@@ -56,8 +50,7 @@ public class ViewTests
         var model = new Model(moves);
 
         var originalConsoleOut = Console.Out; // preserve the original stream
-        using (var writer = new StringWriter())
-        {
+        using (var writer = new StringWriter()) {
             Console.SetOut(writer);
         }
 
@@ -65,8 +58,7 @@ public class ViewTests
         sut.DisplayBoard(model);
 
         // Then
-        using (var writer = new StringWriter())
-        {
+        using (var writer = new StringWriter()) {
             Console.WriteLine("some stuff"); // or make your DLL calls :)
 
             writer.Flush(); // when you're done, make sure everything is written out
@@ -82,8 +74,7 @@ public class ViewTests
 
     // tests DisplayIllegalMove
     [Test]
-    public void TestDisplayIllegalMovedDisplaysAnErrorMessage()
-    {
+    public void TestDisplayIllegalMovedDisplaysAnErrorMessage() {
         // Given
         var presenterSpy = new PresenterSpy();
 
@@ -98,8 +89,7 @@ public class ViewTests
         var model = new Model(moves);
 
         var originalConsoleOut = Console.Out; // preserve the original stream
-        using (var writer = new StringWriter())
-        {
+        using (var writer = new StringWriter()) {
             Console.SetOut(writer);
         }
 
@@ -107,10 +97,7 @@ public class ViewTests
         sut.DisplayIllegalMove(0);
 
         // Then
-        using (var writer = new StringWriter())
-        {
-            Console.WriteLine("some stuff"); // or make your DLL calls :)
-
+        using (var writer = new StringWriter()) {
             writer.Flush(); // when you're done, make sure everything is written out
 
             var printedString = writer.GetStringBuilder().ToString();
@@ -140,8 +127,7 @@ public class ViewTests
         var model = new Model(moves);
 
         var originalConsoleOut = Console.Out; // preserve the original stream
-        using (var writer = new StringWriter())
-        {
+        using (var writer = new StringWriter()) {
             Console.SetOut(writer);
         }
 
@@ -149,10 +135,7 @@ public class ViewTests
         sut.DisplayGameWon();
 
         // Then
-        using (var writer = new StringWriter())
-        {
-            Console.WriteLine("some stuff"); // or make your DLL calls :)
-
+        using (var writer = new StringWriter()) {
             writer.Flush(); // when you're done, make sure everything is written out
 
             var printedString = writer.GetStringBuilder().ToString();
@@ -183,8 +166,7 @@ public class ViewTests
         var model = new Model(moves);
 
         var originalConsoleOut = Console.Out; // preserve the original stream
-        using (var writer = new StringWriter())
-        {
+        using (var writer = new StringWriter()) {
             Console.SetOut(writer);
         }
 
@@ -192,10 +174,7 @@ public class ViewTests
         sut.DisplayWhoseTurn(true);
 
         // Then
-        using (var writer = new StringWriter())
-        {
-            Console.WriteLine("some stuff"); // or make your DLL calls :)
-
+        using (var writer = new StringWriter()) {
             writer.Flush(); // when you're done, make sure everything is written out
 
             var printedString = writer.GetStringBuilder().ToString();

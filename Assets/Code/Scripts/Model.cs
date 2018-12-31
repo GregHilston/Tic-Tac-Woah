@@ -58,12 +58,20 @@ namespace TicTacWoah {
         public enum Move { Empty, Player, Computer };
 
         Move[] board = new Move[9]; // our game board
+        bool isPlayersTurn;
 
-        public Model(Move[] boardState, bool playerGoesFirst = true) {
+        public Model(Move[] boardState , bool playerGoesFirst = true) {
             const int expectedBoardLength = 9;
 
             if (boardState.Length != expectedBoardLength) {
                 throw new ArgumentException("Expected a boardState.Length of " + expectedBoardLength + " but received a length of " + boardState.Length);
+            }
+
+            if(playerGoesFirst) {
+                isPlayersTurn = true;
+            }
+            else {
+                isPlayersTurn = false;
             }
         }
 
@@ -76,7 +84,7 @@ namespace TicTacWoah {
         }
 
         public bool IsPlayersTurn() {
-            throw new NotImplementedException();
+            return isPlayersTurn == true;
         }
 
         public bool IsGameOver() {

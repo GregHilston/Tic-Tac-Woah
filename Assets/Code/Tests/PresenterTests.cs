@@ -74,8 +74,7 @@ public class PresenterTests {
 
     // Tests RecordPlayerMove
     [Test]
-    public void TestRecordPlayerMoveCallsRecordPlayerMove()
-    {
+    public void TestRecordPlayerMoveCallsRecordPlayerMove() {
         // Given
         var modelSpy = new ModelSpy();
 
@@ -94,8 +93,7 @@ public class PresenterTests {
 
     //Tests RecordComputerMove
     [Test]
-    public void TestRecordComputerMoveCallsRecordComputerMove()
-    {
+    public void TestRecordComputerMoveCallsRecordComputerMove() {
         // Given
         var modelSpy = new ModelSpy();
 
