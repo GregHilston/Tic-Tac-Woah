@@ -204,7 +204,6 @@ public class ViewTests
 
             Assert.IsNotNull(printedString, "Displaying whose turn should cause " +
             "something to be printed");
-
         }
     }
 }
