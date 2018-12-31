@@ -38,8 +38,9 @@ public class ViewTests
         }
     }
 
+    // tests DisplayBoard
     [Test]
-    public void TestDisplayBoardDisplaysAnEmptyBoardCorrectly()
+    public void TestDisplayBoardDisplaysAnEmptyBoard()
     {
         // Given
         var presenterSpy = new PresenterSpy();
@@ -59,7 +60,7 @@ public class ViewTests
         {
             Console.SetOut(writer);
         }
-        
+
         // When
         sut.DisplayBoard(model);
 
@@ -74,8 +75,136 @@ public class ViewTests
 
             Console.SetOut(originalConsoleOut); // restore Console.Out
 
-            Assert.IsNotNull(printedString, "Displaying Board should cause " +
+            Assert.IsNotNull(printedString, "Displaying board should cause " +
             "something to be printed");
+        }
+    }
+
+    // tests DisplayIllegalMove
+    [Test]
+    public void TestDisplayIllegalMovedDisplaysAnErrorMessage()
+    {
+        // Given
+        var presenterSpy = new PresenterSpy();
+
+        var sut = new View();
+
+        sut.iPresenter = presenterSpy;
+
+        TicTacWoah.Model.Move[] moves = {
+            Model.Move.Computer, Model.Move.Empty, Model.Move.Player,
+            Model.Move.Computer, Model.Move.Player, Model.Move.Empty,
+            Model.Move.Computer, Model.Move.Empty, Model.Move.Empty};
+        var model = new Model(moves);
+
+        var originalConsoleOut = Console.Out; // preserve the original stream
+        using (var writer = new StringWriter())
+        {
+            Console.SetOut(writer);
+        }
+
+        // When
+        sut.DisplayIllegalMove(0);
+
+        // Then
+        using (var writer = new StringWriter())
+        {
+            Console.WriteLine("some stuff"); // or make your DLL calls :)
+
+            writer.Flush(); // when you're done, make sure everything is written out
+
+            var printedString = writer.GetStringBuilder().ToString();
+
+            Console.SetOut(originalConsoleOut); // restore Console.Out
+
+            Assert.IsNotNull(printedString, "Displaying an illegal should " +
+            	"cause something to be printed");
+        }
+    }
+
+    // tests DisplayGameWon
+    [Test]
+    public void TestDisplayGameWonDisplaysAnCongratulationsMessage()
+    {
+        // Given
+        var presenterSpy = new PresenterSpy();
+
+        var sut = new View();
+
+        sut.iPresenter = presenterSpy;
+
+        TicTacWoah.Model.Move[] moves = {
+            Model.Move.Computer, Model.Move.Empty, Model.Move.Player,
+            Model.Move.Computer, Model.Move.Player, Model.Move.Empty,
+            Model.Move.Computer, Model.Move.Empty, Model.Move.Empty};
+        var model = new Model(moves);
+
+        var originalConsoleOut = Console.Out; // preserve the original stream
+        using (var writer = new StringWriter())
+        {
+            Console.SetOut(writer);
+        }
+
+        // When
+        sut.DisplayGameWon();
+
+        // Then
+        using (var writer = new StringWriter())
+        {
+            Console.WriteLine("some stuff"); // or make your DLL calls :)
+
+            writer.Flush(); // when you're done, make sure everything is written out
+
+            var printedString = writer.GetStringBuilder().ToString();
+
+            Console.SetOut(originalConsoleOut); // restore Console.Out
+
+            Assert.IsNotNull(printedString, "Displaying game won should cause " +
+            "something to be printed");
+
+        }
+    }
+
+    // tests DisplayWhoseTurn
+    [Test]
+    public void TestDisplayWhoseTurnDisplaysAMessage()
+    {
+        // Given
+        var presenterSpy = new PresenterSpy();
+
+        var sut = new View();
+
+        sut.iPresenter = presenterSpy;
+
+        TicTacWoah.Model.Move[] moves = {
+            Model.Move.Computer, Model.Move.Empty, Model.Move.Player,
+            Model.Move.Computer, Model.Move.Player, Model.Move.Empty,
+            Model.Move.Computer, Model.Move.Empty, Model.Move.Empty};
+        var model = new Model(moves);
+
+        var originalConsoleOut = Console.Out; // preserve the original stream
+        using (var writer = new StringWriter())
+        {
+            Console.SetOut(writer);
+        }
+
+        // When
+        sut.DisplayWhoseTurn(true);
+
+        // Then
+        using (var writer = new StringWriter())
+        {
+            Console.WriteLine("some stuff"); // or make your DLL calls :)
+
+            writer.Flush(); // when you're done, make sure everything is written out
+
+            var printedString = writer.GetStringBuilder().ToString();
+
+            Console.SetOut(originalConsoleOut); // restore Console.Out
+
+            Assert.IsNotNull(printedString, "Displaying whose turn should cause " +
+            "something to be printed");
+
         }
     }
 }
