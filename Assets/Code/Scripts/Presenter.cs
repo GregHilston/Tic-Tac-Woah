@@ -6,7 +6,7 @@ namespace TicTacWoah {
     /// <summary>
     /// Glues the User Interactions to the state and business logic, calling display functions when needed.
     /// </summary>
-    interface IPresenter {
+    public interface IPresenter {
         /// <summary>
         /// Signifies that a new game has begun
         /// </summary>
