@@ -34,6 +34,12 @@ namespace TicTacWoah {
     /// Handles all the user input handling and display logic.
     /// </summary>
     public class View : IView {
+        public IPresenter iPresenter;
+
+        public View() {
+            iPresenter = new Presenter();
+        }
+
         public void DisplayBoard(Model model) {
             throw new NotImplementedException();
         }
