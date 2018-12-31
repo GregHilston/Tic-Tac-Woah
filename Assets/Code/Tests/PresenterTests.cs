@@ -70,4 +70,42 @@ public class PresenterTests {
         Assert.IsTrue(modelSpy.isPlayersTurnWasCalled, "Starting a new game " +
         	"should check whose turn it is");
     }
+
+    [Test]
+    public void TestRecordPlayerMoveCallsRecordPlayerMove()
+    {
+        // Given
+        var modelSpy = new ModelSpy();
+
+        var sut = new Presenter();
+        sut.model = modelSpy;
+
+        sut.OnGameStart();
+
+        // When
+        sut.RecordPlayerMove(0);
+
+        // Then
+        Assert.IsTrue(modelSpy.recordPlayerMoveWasCalled, "The presenter being " +
+            "asked to record a player move, should call the same on the model");
+    }
+
+    [Test]
+    public void TestRecordComputerMoveCallsRecordComputerMove()
+    {
+        // Given
+        var modelSpy = new ModelSpy();
+
+        var sut = new Presenter();
+        sut.model = modelSpy;
+
+        sut.OnGameStart();
+
+        // When
+        sut.RecordComputerMove(0);
+
+        // Then
+        Assert.IsTrue(modelSpy.recordComputerMoveWasCalled, "The presenter being " +
+            "asked to record a computer move, should call the same on the model");
+    }
 }
