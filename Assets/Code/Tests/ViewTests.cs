@@ -50,15 +50,14 @@ public class ViewTests {
         var model = new Model(moves);
 
         var originalConsoleOut = Console.Out; // preserve the original stream
-        using (var writer = new StringWriter()) {
-            Console.SetOut(writer);
-        }
+        var writer = new StringWriter();
+        Console.SetOut(writer);
 
         // When
         sut.DisplayBoard(model);
 
         // Then
-        using (var writer = new StringWriter()) {
+        using (writer) {
             Console.WriteLine("some stuff"); // or make your DLL calls :)
 
             writer.Flush(); // when you're done, make sure everything is written out
@@ -89,15 +88,14 @@ public class ViewTests {
         var model = new Model(moves);
 
         var originalConsoleOut = Console.Out; // preserve the original stream
-        using (var writer = new StringWriter()) {
-            Console.SetOut(writer);
-        }
+        var writer = new StringWriter();
+        Console.SetOut(writer);
 
         // When
         sut.DisplayIllegalMove(0);
 
         // Then
-        using (var writer = new StringWriter()) {
+        using (writer) {
             writer.Flush(); // when you're done, make sure everything is written out
 
             var printedString = writer.GetStringBuilder().ToString();
@@ -127,15 +125,14 @@ public class ViewTests {
         var model = new Model(moves);
 
         var originalConsoleOut = Console.Out; // preserve the original stream
-        using (var writer = new StringWriter()) {
-            Console.SetOut(writer);
-        }
+        var writer = new StringWriter();
+        Console.SetOut(writer);
 
         // When
         sut.DisplayGameWon();
 
         // Then
-        using (var writer = new StringWriter()) {
+        using (writer) {
             writer.Flush(); // when you're done, make sure everything is written out
 
             var printedString = writer.GetStringBuilder().ToString();
@@ -166,15 +163,14 @@ public class ViewTests {
         var model = new Model(moves);
 
         var originalConsoleOut = Console.Out; // preserve the original stream
-        using (var writer = new StringWriter()) {
-            Console.SetOut(writer);
-        }
+        var writer = new StringWriter();
+        Console.SetOut(writer);
 
         // When
         sut.DisplayWhoseTurn(true);
 
         // Then
-        using (var writer = new StringWriter()) {
+        using (writer) {
             writer.Flush(); // when you're done, make sure everything is written out
 
             var printedString = writer.GetStringBuilder().ToString();
