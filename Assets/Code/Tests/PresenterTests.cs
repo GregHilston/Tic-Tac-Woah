@@ -55,6 +55,7 @@ public class PresenterTests {
         }
     }
 
+    // Tests OnGameStarts
     [Test]
     public void TestOnGameStartCallsIsPlayersTurn() {
         // Given
@@ -71,6 +72,7 @@ public class PresenterTests {
         	"should check whose turn it is");
     }
 
+    // Tests RecordPlayerMove
     [Test]
     public void TestRecordPlayerMoveCallsRecordPlayerMove()
     {
@@ -90,6 +92,7 @@ public class PresenterTests {
             "asked to record a player move, should call the same on the model");
     }
 
+    //Tests RecordComputerMove
     [Test]
     public void TestRecordComputerMoveCallsRecordComputerMove()
     {
