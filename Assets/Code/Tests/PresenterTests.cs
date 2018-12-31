@@ -6,48 +6,48 @@ using TicTacWoah;
 
 public class PresenterTests {
     public class ModelSpy : IModel {
-        bool hasComputerWonWasCalled = false;
-        bool HasComputerWonInjectableValue;
+        public bool hasComputerWonWasCalled = false;
+        public bool HasComputerWonInjectableValue;
         public bool HasComputerWon() {
             hasComputerWonWasCalled = true;
 
             return HasComputerWonInjectableValue;
         }
 
-        bool hasPlayerWonWasCalled = false;
-        bool hasPlayerWonInjectableValue;
+        public bool hasPlayerWonWasCalled = false;
+        public bool hasPlayerWonInjectableValue;
         public bool HasPlayerWon() {
             hasPlayerWonWasCalled = true;
 
             return hasPlayerWonInjectableValue;
         }
 
-        bool isGameOverWasCalled = false;
-        bool isGameOverInjectableValue;
+        public bool isGameOverWasCalled = false;
+        public bool isGameOverInjectableValue;
         public bool IsGameOver() {
             isGameOverWasCalled = true;
 
             return isGameOverInjectableValue;
         }
 
-        bool isPlayersTurnWasCalled = false;
-        bool isPlayersTurnInjectableValue;
+        public bool isPlayersTurnWasCalled = false;
+        public bool isPlayersTurnInjectableValue;
         public bool IsPlayersTurn() {
             isPlayersTurnWasCalled = true;
 
             return isPlayersTurnInjectableValue;
         }
 
-        bool recordComputerMoveWasCalled = false;
-        bool recordComputerMoveInjectableValue;
+        public bool recordComputerMoveWasCalled = false;
+        public bool recordComputerMoveInjectableValue;
         public bool RecordComputerMove(int coordinate) {
             recordComputerMoveWasCalled = true;
 
             return recordComputerMoveInjectableValue;
         }
 
-        bool recordPlayerMoveWasCalled = false;
-        bool recordPlayerMoveInjectableValue;
+        public bool recordPlayerMoveWasCalled = false;
+        public bool recordPlayerMoveInjectableValue;
         public bool RecordPlayerMove(int coordinate) {
             recordPlayerMoveWasCalled = true;
 
@@ -56,7 +56,18 @@ public class PresenterTests {
     }
 
     [Test]
-    public void PresenterTestsSimplePasses() {
-        // Use the Assert class to test conditions.
+    public void TestOnGameStartCallsIsPlayersTurn() {
+        // Given
+        var modelSpy = new ModelSpy();
+
+        var sut = new Presenter();
+        sut.model = modelSpy;
+
+        // When
+        sut.OnGameStart();
+
+        // Then
+        Assert.IsTrue(modelSpy.isPlayersTurnWasCalled, "Starting a new game " +
+        	"should check whose turn it is");
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System; // required for NotImplementedException
 using UnityEngine;
+using TicTacWoah;
 
 namespace TicTacWoah {
     /// <summary>
@@ -25,6 +26,17 @@ namespace TicTacWoah {
     }
 
     public class Presenter : IPresenter {
+        public IModel model;
+
+        public Presenter() {
+            TicTacWoah.Model.Move[] moves = {
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty};
+
+            model = new Model(moves);
+        }
+
         public void OnGameStart() {
             throw new NotImplementedException();
         }
