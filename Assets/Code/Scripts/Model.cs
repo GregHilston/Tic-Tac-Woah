@@ -76,7 +76,14 @@ namespace TicTacWoah {
         }
 
         public bool RecordPlayerMove(int coordinate) {
-            throw new NotImplementedException();
+            if (board[coordinate] == Move.Empty) {
+                board[coordinate] = Move.Player;
+
+                return true;
+            }
+            else {
+                return false;
+            }
         }
 
         public bool RecordComputerMove(int coordinate) {
