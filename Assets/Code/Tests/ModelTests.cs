@@ -45,7 +45,7 @@ public class ModelTests {
             Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
             Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
             Model.Move.Empty, Model.Move.Empty, Model.Move.Empty};
-        var sut = new Model(moves);
+        var sut = new Model(moves); 
 
         // When
         bool returnValue = sut.RecordPlayerMove(0);

@@ -61,7 +61,7 @@ namespace TicTacWoah {
         bool isPlayersTurn;
 
         public Model(Move[] boardState , bool playerGoesFirst = true) {
-            const int expectedBoardLength = 9;
+            const int expectedBoardLength = 9; 
 
             if (boardState.Length != expectedBoardLength) {
                 throw new ArgumentException("Expected a boardState.Length of " + expectedBoardLength + " but received a length of " + boardState.Length);
