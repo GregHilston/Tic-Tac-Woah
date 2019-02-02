@@ -14,95 +14,52 @@ namespace TicTacWoah {
     /// </summary>
     public interface IModel {
         /// <summary>
-        /// Records a move made by the player. Updates internal state of whose 
+        /// Records a move made. Updates internal state of whose 
         /// turn it is
         /// </summary>
+        /// <param name="playerId">Which player has moved</param>
         /// <param name="coordinate">Where the player has moved</param>
         /// <returns>True if the move was valid else False</returns>
-        bool RecordPlayerMove(int coordinate);
+        bool RecordMove(int playerId, int coordinate);
 
         /// <summary>
-        /// Records a move made by the computer. Updates internal state of whose 
-        /// turn it is
+        /// Determines whose turn it is.
         /// </summary>
-        /// <param name="coordinate">Where the computer has moved</param>
-        /// <returns>True if the move was valid else False</returns>
-        bool RecordComputerMove(int coordinate);
+        /// <returns>player id representing whose turn it is.</returns>
+        int WhoseTurn();
 
         /// <summary>
-        /// Determines if it is the players turn
+        /// Determines if the game is over.
         /// </summary>
-        /// <returns>True if it is the player's turn else False</returns>
-        bool IsPlayersTurn();
-
-        /// <summary>
-        /// Determines if the game is over
-        /// </summary>
-        /// <returns>True if the game is over else False</returns>
-        bool IsGameOver();
-
-        /// <summary>
-        /// Determines if the player has won
-        /// </summary>
-        /// <returns>True if the player has won else False</returns>
-        bool HasPlayerWon();
-
-        /// <summary>
-        /// Determines if the computer has won
-        /// </summary>
-        /// <returns>True if the computer has won else False</returns>
-        bool HasComputerWon();
+        /// <returns>-1 for the game is not over, otherwise returns the player id of who won.</returns>
+        int IsGameOver();
     }
 
     public class Model : IModel {
+        enum PlayerId { HumanPlayer, Computer };
         public enum Move { Empty, Player, Computer };
 
         Move[] board = new Move[9]; // our game board
-        bool isPlayersTurn;
+        Move[] initialBoard = {
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
+            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty
+        };
+        PlayerId whoseTurn = PlayerId.HumanPlayer;
 
-        public Model(Move[] boardState , bool playerGoesFirst = true) {
-            const int expectedBoardLength = 9; 
-
-            if (boardState.Length != expectedBoardLength) {
-                throw new ArgumentException("Expected a boardState.Length of " + expectedBoardLength + " but received a length of " + boardState.Length);
-            }
-
-            if(playerGoesFirst) {
-                isPlayersTurn = true;
-            }
-            else {
-                isPlayersTurn = false;
-            }
+        public Model() {
+            this.board = initialBoard;
         }
 
-        public bool RecordPlayerMove(int coordinate) {
-            if (board[coordinate] == Move.Empty) {
-                board[coordinate] = Move.Player;
-
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-
-        public bool RecordComputerMove(int coordinate) {
+        bool RecordMove(int playerId, int coordinate) {
             throw new NotImplementedException();
         }
 
-        public bool IsPlayersTurn() {
-            return isPlayersTurn == true;
-        }
-
-        public bool IsGameOver() {
+        public int WhoseTurn() {
             throw new NotImplementedException();
         }
 
-        public bool HasPlayerWon() {
-            throw new NotImplementedException();
-        }
-
-        public bool HasComputerWon() {
+        public int IsGameOver() {
             throw new NotImplementedException();
         }
     }

@@ -12,7 +12,7 @@ using TicTacWoah;
 public class ViewTests {
     public class PresenterSpy : IPresenter {
         public bool OnGameStartWasCalled = false;
-        public void OnGameStart() {
+        public void StartNewGame() {
             OnGameStartWasCalled = true;
         }
 
@@ -129,7 +129,7 @@ public class ViewTests {
         Console.SetOut(writer);
 
         // When
-        sut.DisplayGameWon();
+        sut.DisplayGameOver();
 
         // Then
         using (writer) {

@@ -65,7 +65,7 @@ public class PresenterTests {
         sut.model = modelSpy;
 
         // When
-        sut.OnGameStart();
+        sut.StartNewGame();
 
         // Then
         Assert.IsTrue(modelSpy.isPlayersTurnWasCalled, "Starting a new game " +
@@ -81,7 +81,7 @@ public class PresenterTests {
         var sut = new Presenter();
         sut.model = modelSpy;
 
-        sut.OnGameStart();
+        sut.StartNewGame();
 
         // When
         sut.RecordPlayerMove(0);
@@ -100,7 +100,7 @@ public class PresenterTests {
         var sut = new Presenter();
         sut.model = modelSpy;
 
-        sut.OnGameStart();
+        sut.StartNewGame();
 
         // When
         sut.RecordComputerMove(0);

@@ -8,44 +8,48 @@ namespace TicTacWoah {
     /// </summary>
     public interface IPresenter {
         /// <summary>
-        /// Signifies that a new game has begun
+        /// Signifies that a new game should be started.
         /// </summary>
-        void OnGameStart();
+        void StartNewGame();
 
         /// <summary>
         /// Records a move made by the player
         /// </summary>
         /// <param name="coordinate">Where the player has moved</param>
-        void RecordPlayerMove(int coordinate);
+        void RecordMove(int playerId, int coordinate);
 
         /// <summary>
-        /// Records a mvoe made by the computer
+        /// Prepares information for the About screen.
         /// </summary>
-        /// <param name="coordinate">Where the computer has moved</param>
-        void RecordComputerMove(int coordinate);
+        void OnAboutClicked();
     }
 
     public class Presenter : IPresenter {
-        public IModel model;
+        /// <summary>
+        /// Reference to our IView. Note we only maintain a reference to the interface.
+        /// </summary>
+        IView view;
 
-        public Presenter() {
-            TicTacWoah.Model.Move[] moves = {
-            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
-            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
-            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty};
+        /// <summary>
+        /// Reference to our IModel. Note we only maintain a reference to the interface.
+        /// </summary>
+        IModel model;
 
-            model = new Model(moves);
+        public Presenter(IView view) {
+            this.view = view;
+
+            model = new Model();
         }
 
-        public void OnGameStart() {
+        public void StartNewGame() {
             throw new NotImplementedException();
         }
 
-        public void RecordComputerMove(int coordinate) {
+        public void RecordMove(int playerId, int coordinate) { 
             throw new NotImplementedException();
         }
 
-        public void RecordPlayerMove(int coordinate) {
+        public void OnAboutClicked() {
             throw new NotImplementedException();
         }
     }

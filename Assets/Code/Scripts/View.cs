@@ -5,7 +5,7 @@ namespace TicTacWoah {
     /// <summary>
     /// Represents our user interface and hooks into user interactions.
     /// </summary>
-    interface IView {
+    public interface IView {
         /// <summary>
         /// Visually displays the state of the board.
         /// </summary>
@@ -15,44 +15,47 @@ namespace TicTacWoah {
         /// <summary>
         /// Displays that an illegal move was attempted to be made.
         /// </summary>
-        /// <param name="coordinate">corodinate of illegal move</param>
-        void DisplayIllegalMove(int coordinate);
+        void DisplayIllegalMove();
 
         /// <summary>
-        /// Displays to the human player that they won the game.
+        /// Displays that the game is over and who has won the game.
         /// </summary>
-        void DisplayGameWon();
+        /// <param name="playerId">Indicates which player we're talking about.</param>
+        void DisplayGameOverAndWinner(int playerId);
 
         /// <summary>
         /// Displays whose turn it is.
         /// </summary>
-        /// <param name="isPlayersTurn">If it is the human player's turn</param>
-        void DisplayWhoseTurn(bool isPlayersTurn);
+        /// <param name="playerId">Indicates which player we're talking about.</param>
+        void DisplayWhoseTurn(int playerId);
     }
 
     /// <summary>
     /// Handles all the user input handling and display logic.
     /// </summary>
     public class View : IView {
-        public IPresenter iPresenter;
+        /// <summary>
+        /// Reference to our IPresenter. Note we only maintain a reference to the interface.
+        /// </summary>
+        IPresenter iPresenter;
 
         public View() {
-            iPresenter = new Presenter();
+            iPresenter = new Presenter(this);
         }
 
         public void DisplayBoard(Model model) {
             throw new NotImplementedException();
         }
 
-        public void DisplayGameWon() {
+        public void DisplayIllegalMove() {
             throw new NotImplementedException();
         }
 
-        public void DisplayIllegalMove(int coordinate) {
+        public void DisplayGameOverAndWinner(int playerId) {
             throw new NotImplementedException();
         }
 
-        public void DisplayWhoseTurn(bool isPlayersTurn) {
+        public void DisplayWhoseTurn(int playerId) {
             throw new NotImplementedException();
         }
     }
