@@ -11,32 +11,18 @@ using TicTacWoah;
 /// </summary>
 public class ViewTests {
     public class PresenterSpy : IPresenter {
-        public bool onGameStartWasCalled = false;
+        public bool startNewGameWasCalled = false;
         public void StartNewGame() {
-            onGameStartWasCalled = true;
-        }
-
-        public bool recordComputerMoveWasCalled = false;
-        public int observedRecordComputerMoveCoordinate;
-        public void RecordComputerMove(int coordinate) {
-            recordComputerMoveWasCalled = true;
-
-            observedRecordComputerMoveCoordinate = coordinate;
-        }
-
-        public bool recordPlayerMoveWasCalled = false;
-        public int observedRecordPlayerMoveCoordinate;
-        public void RecordPlayerMove(int coordinate) {
-            recordPlayerMoveWasCalled = true;
-
-            observedRecordPlayerMoveCoordinate = coordinate;
+            startNewGameWasCalled = true;
         }
 
         public bool recordMoveWasCalled = false;
+        public int observedRecordMovePlayerId;
         public int observedRecordMoveCoordinate;
         public void RecordMove(int playerId, int coordinate) {
             recordMoveWasCalled = true;
 
+            observedRecordMovePlayerId = playerId;
             observedRecordMoveCoordinate = coordinate;
         }
 
