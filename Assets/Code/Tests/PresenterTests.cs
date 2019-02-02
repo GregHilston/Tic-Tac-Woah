@@ -6,52 +6,33 @@ using TicTacWoah;
 
 public class PresenterTests {
     public class ModelSpy : IModel {
-        public bool hasComputerWonWasCalled = false;
-        public bool HasComputerWonInjectableValue;
-        public bool HasComputerWon() {
-            hasComputerWonWasCalled = true;
+        public bool wasRecordMoveCalled = false;
+        public int observedRecordMovePlayerId;
+        public int observedRecordMoveCoordinate;
+        public bool injectableRecordMove;
+        public bool RecordMove(int playerId, int coordinate) {
+            wasRecordMoveCalled = true;
 
-            return HasComputerWonInjectableValue;
+            observedRecordMovePlayerId = playerId;
+            observedRecordMoveCoordinate = coordinate;
+
+            return injectableRecordMove;
         }
 
-        public bool hasPlayerWonWasCalled = false;
-        public bool hasPlayerWonInjectableValue;
-        public bool HasPlayerWon() {
-            hasPlayerWonWasCalled = true;
+        public bool wasWhoseTurnCalled = false;
+        public int injectableWhoseTurn;
+        public int WhoseTurn() {
+            wasWhoseTurnCalled = true;
 
-            return hasPlayerWonInjectableValue;
+            return injectableWhoseTurn;
         }
 
-        public bool isGameOverWasCalled = false;
-        public bool isGameOverInjectableValue;
-        public bool IsGameOver() {
-            isGameOverWasCalled = true;
+        public bool wasIsGameOverCalled = false;
+        public int injectableIsGameOver;
+        public int IsGameOver() {
+            wasIsGameOverCalled = true;
 
-            return isGameOverInjectableValue;
-        }
-
-        public bool isPlayersTurnWasCalled = false;
-        public bool isPlayersTurnInjectableValue;
-        public bool IsPlayersTurn() {
-            isPlayersTurnWasCalled = true;
-
-            return isPlayersTurnInjectableValue;
-        }
-
-        public bool recordComputerMoveWasCalled = false;
-        public bool recordComputerMoveInjectableValue;
-        public bool RecordComputerMove(int coordinate) {
-            recordComputerMoveWasCalled = true;
-
-            return recordComputerMoveInjectableValue;
-        }
-
-        public bool recordPlayerMoveWasCalled = false;
-        public bool recordPlayerMoveInjectableValue;
-        public bool RecordPlayerMove(int coordinate) {
-            recordPlayerMoveWasCalled = true;
-
-            return recordPlayerMoveInjectableValue;
+            return injectableIsGameOver;
         }
     }
 
@@ -60,7 +41,6 @@ public class PresenterTests {
     public void TestOnGameStartCallsIsPlayersTurn() {
         // Given
         var modelSpy = new ModelSpy();
-
         var sut = new Presenter();
         sut.model = modelSpy;
 
