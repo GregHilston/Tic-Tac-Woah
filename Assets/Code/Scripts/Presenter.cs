@@ -28,12 +28,12 @@ namespace TicTacWoah {
         /// <summary>
         /// Reference to our IView. Note we only maintain a reference to the interface.
         /// </summary>
-        IView view;
+        public IView view;
 
         /// <summary>
         /// Reference to our IModel. Note we only maintain a reference to the interface.
         /// </summary>
-        IModel model;
+        public IModel model;
 
         public Presenter(IView view) {
             this.view = view;

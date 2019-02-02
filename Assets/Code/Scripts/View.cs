@@ -9,8 +9,8 @@ namespace TicTacWoah {
         /// <summary>
         /// Visually displays the state of the board.
         /// </summary>
-        /// <param name="model">the current state of the board</param>
-        void DisplayBoard(Model model);
+        /// <param name="board">the current state of the board</param>
+        void DisplayBoard(Move[] board);
 
         /// <summary>
         /// Displays that an illegal move was attempted to be made.

@@ -35,15 +35,16 @@ namespace TicTacWoah {
         int IsGameOver();
     }
 
+    public enum Move { Empty, Player, Computer };
+
     public class Model : IModel {
         enum PlayerId { HumanPlayer, Computer };
-        public enum Move { Empty, Player, Computer };
 
         Move[] board = new Move[9]; // our game board
         Move[] initialBoard = {
-            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
-            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty,
-            Model.Move.Empty, Model.Move.Empty, Model.Move.Empty
+            Move.Empty, Move.Empty, Move.Empty,
+            Move.Empty, Move.Empty, Move.Empty,
+            Move.Empty, Move.Empty, Move.Empty
         };
         PlayerId whoseTurn = PlayerId.HumanPlayer;
 

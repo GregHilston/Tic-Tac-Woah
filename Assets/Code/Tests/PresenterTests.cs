@@ -5,6 +5,37 @@ using System.Collections;
 using TicTacWoah;
 
 public class PresenterTests {
+    public class ViewSpy : IView {
+        public bool wasDisplayBoardCalled = false;
+        public Move[] observedDisplayBoardBoard;
+        public void DisplayBoard(Move[] board) {
+            wasDisplayBoardCalled = true;
+
+            observedDisplayBoardBoard = board;
+        }
+
+        public bool wasDisplayGameOverAndWinnerCalled = false;
+        public int observedDisplayGameOverAndWinnerPlayerId;
+        public void DisplayGameOverAndWinner(int playerId) {
+            wasDisplayGameOverAndWinnerCalled = true;
+
+            observedDisplayGameOverAndWinnerPlayerId = playerId;
+        }
+
+        public bool wasDisplayIllegalMoveCalled = false;
+        public void DisplayIllegalMove() {
+            wasDisplayIllegalMoveCalled = true;
+        }
+
+        public bool wasDisplayWhoseTurnCalled = false;
+        public int observedDisplayWhoseTurnPlayerId;
+        public void DisplayWhoseTurn(int playerId) {
+            wasDisplayWhoseTurnCalled = true;
+
+            observedDisplayWhoseTurnPlayerId = playerId;
+        }
+    }
+
     public class ModelSpy : IModel {
         public bool wasRecordMoveCalled = false;
         public int observedRecordMovePlayerId;
@@ -40,8 +71,9 @@ public class PresenterTests {
     [Test]
     public void TestOnGameStartCallsIsPlayersTurn() {
         // Given
+        var viewSpy = new ViewSpy();
+        var sut = new Presenter(viewSpy);
         var modelSpy = new ModelSpy();
-        var sut = new Presenter();
         sut.model = modelSpy;
 
         // When
@@ -56,9 +88,9 @@ public class PresenterTests {
     [Test]
     public void TestRecordPlayerMoveCallsRecordPlayerMove() {
         // Given
+        var viewSpy = new ViewSpy();
+        var sut = new Presenter(viewSpy);
         var modelSpy = new ModelSpy();
-
-        var sut = new Presenter();
         sut.model = modelSpy;
 
         sut.StartNewGame();
@@ -75,9 +107,9 @@ public class PresenterTests {
     [Test]
     public void TestRecordComputerMoveCallsRecordComputerMove() {
         // Given
+        var viewSpy = new ViewSpy();
+        var sut = new Presenter(viewSpy);
         var modelSpy = new ModelSpy();
-
-        var sut = new Presenter();
         sut.model = modelSpy;
 
         sut.StartNewGame();
