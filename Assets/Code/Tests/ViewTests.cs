@@ -36,17 +36,9 @@ public class ViewTests {
     [Test]
     public void TestDisplayBoardDisplaysAnEmptyBoard() {
         // Given
-        var presenterSpy = new PresenterSpy();
-
         var sut = new View();
-
-        sut.iPresenter = presenterSpy;
-
-        TicTacWoah.Model.Move[] moves = {
-            Model.Move.Computer, Model.Move.Empty, Model.Move.Player,
-            Model.Move.Computer, Model.Move.Player, Model.Move.Empty,
-            Model.Move.Computer, Model.Move.Empty, Model.Move.Empty};
-        var model = new Model(moves);
+        var presenterSpy = new PresenterSpy();
+        sut.presenter = presenterSpy;
 
         var originalConsoleOut = Console.Out; // preserve the original stream
         var writer = new StringWriter();
@@ -74,24 +66,16 @@ public class ViewTests {
     [Test]
     public void TestDisplayIllegalMovedDisplaysAnErrorMessage() {
         // Given
-        var presenterSpy = new PresenterSpy();
-
         var sut = new View();
-
-        sut.iPresenter = presenterSpy;
-
-        TicTacWoah.Model.Move[] moves = {
-            Model.Move.Computer, Model.Move.Empty, Model.Move.Player,
-            Model.Move.Computer, Model.Move.Player, Model.Move.Empty,
-            Model.Move.Computer, Model.Move.Empty, Model.Move.Empty};
-        var model = new Model(moves);
+        var presenterSpy = new PresenterSpy();
+        sut.presenter = presenterSpy;
 
         var originalConsoleOut = Console.Out; // preserve the original stream
         var writer = new StringWriter();
         Console.SetOut(writer);
 
         // When
-        sut.DisplayIllegalMove(0);
+        sut.DisplayIllegalMove();
 
         // Then
         using (writer) {
@@ -108,27 +92,20 @@ public class ViewTests {
 
     // tests DisplayGameWon
     [Test]
-    public void TestDisplayGameWonDisplaysAnCongratulationsMessage()
-    {
+    public void TestDisplayGameWonDisplaysAnCongratulationsMessage() {
         // Given
-        var presenterSpy = new PresenterSpy();
-
         var sut = new View();
+        var presenterSpy = new PresenterSpy();
+        sut.presenter = presenterSpy;
 
-        sut.iPresenter = presenterSpy;
-
-        TicTacWoah.Model.Move[] moves = {
-            Model.Move.Computer, Model.Move.Empty, Model.Move.Player,
-            Model.Move.Computer, Model.Move.Player, Model.Move.Empty,
-            Model.Move.Computer, Model.Move.Empty, Model.Move.Empty};
-        var model = new Model(moves);
+        var winnerPlayerId = 1;
 
         var originalConsoleOut = Console.Out; // preserve the original stream
         var writer = new StringWriter();
         Console.SetOut(writer);
 
         // When
-        sut.DisplayGameOver();
+        sut.DisplayGameOverAndWinner(winnerPlayerId);
 
         // Then
         using (writer) {
@@ -140,33 +117,25 @@ public class ViewTests {
 
             Assert.IsNotNull(printedString, "Displaying game won should cause " +
             "something to be printed");
-
         }
     }
 
     // tests DisplayWhoseTurn
     [Test]
-    public void TestDisplayWhoseTurnDisplaysAMessage()
-    {
+    public void TestDisplayWhoseTurnDisplaysAMessage() {
         // Given
-        var presenterSpy = new PresenterSpy();
-
         var sut = new View();
+        var presenterSpy = new PresenterSpy();
+        sut.presenter = presenterSpy;
 
-        sut.iPresenter = presenterSpy;
-
-        TicTacWoah.Model.Move[] moves = {
-            Model.Move.Computer, Model.Move.Empty, Model.Move.Player,
-            Model.Move.Computer, Model.Move.Player, Model.Move.Empty,
-            Model.Move.Computer, Model.Move.Empty, Model.Move.Empty};
-        var model = new Model(moves);
+        var whoseTurnPlayerId = 1;
 
         var originalConsoleOut = Console.Out; // preserve the original stream
         var writer = new StringWriter();
         Console.SetOut(writer);
 
         // When
-        sut.DisplayWhoseTurn(true);
+        sut.DisplayWhoseTurn(whoseTurnPlayerId);
 
         // Then
         using (writer) {

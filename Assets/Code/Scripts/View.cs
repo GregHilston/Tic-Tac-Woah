@@ -37,10 +37,10 @@ namespace TicTacWoah {
         /// <summary>
         /// Reference to our IPresenter. Note we only maintain a reference to the interface.
         /// </summary>
-        IPresenter iPresenter;
+        public IPresenter presenter;
 
         public View() {
-            iPresenter = new Presenter(this);
+            presenter = new Presenter(this);
         }
 
         public void DisplayBoard(Model model) {
