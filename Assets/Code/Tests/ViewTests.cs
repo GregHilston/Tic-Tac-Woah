@@ -40,6 +40,8 @@ public class ViewTests {
         var presenterSpy = new PresenterSpy();
         sut.presenter = presenterSpy;
 
+        var model = new Model();
+
         var originalConsoleOut = Console.Out; // preserve the original stream
         var writer = new StringWriter();
         Console.SetOut(writer);
