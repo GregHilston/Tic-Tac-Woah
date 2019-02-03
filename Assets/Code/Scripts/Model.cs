@@ -52,7 +52,7 @@ namespace TicTacWoah {
             this.board = initialBoard;
         }
 
-        bool RecordMove(int playerId, int coordinate) {
+        bool RecordMove(int playerId, int coordinate) { 
             throw new NotImplementedException();
         }
 
